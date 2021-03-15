@@ -15,6 +15,7 @@ namespace Condominio
     {
         List<Propietario> propietarios = new List<Propietario>();
         List<Propiedad> propiedades = new List<Propiedad>();
+        List<Reporte> reportes = new List<Reporte>();
 
         public Form1()
         {
@@ -63,16 +64,19 @@ namespace Condominio
 
         }
 
-        private void buttonCargar_Click(object sender, EventArgs e)
+        private void MostrarReporte(bool ordenada = false)
         {
-            List<Reporte> reportes = new List<Reporte>();
-
+            //por si se presiona varias veces el boton de cargar o de ordenar
+            //cada vez borramos la lista
+            reportes.Clear();
+            
             foreach (var propiedad in propiedades)
             {
                 Reporte reporte = new Reporte();
 
                 Propietario propietario = propietarios.Find(p => p.Dpi == propiedad.Dpi);
 
+                reporte.Dpi = propietario.Dpi;
                 reporte.Nombre = propietario.Nombre;
                 reporte.Apellido = propietario.Apellido;
                 reporte.NoCasa = propiedad.NoCasa;
@@ -81,15 +85,65 @@ namespace Condominio
                 reportes.Add(reporte);
             }
 
+
+            if (ordenada)
+                reportes = reportes.OrderBy(r => r.Cuota).ToList();
+
             dataGridViewReporte.DataSource = null;
             dataGridViewReporte.DataSource = reportes;
+            //por si no queremos mostrar el dpi
+            dataGridViewReporte.Columns[0].Visible = false;
             dataGridViewReporte.Refresh();            
+
+        }
+
+        private void buttonCargar_Click(object sender, EventArgs e)
+        {
+
+            MostrarReporte();
+
+        }
+
+        private void buttonOrdenar_Click(object sender, EventArgs e)
+        {
+            MostrarReporte(true);
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Cargar();
+        }
+
+       
+
+        private void buttonMasPropiedades_Click(object sender, EventArgs e)
+        {
+            //a la clase Reporte se le incluyo el DPI para poder
+            //ver cuantas propiedades tiene un dueño sin depender 
+            //de su nombre y apellido
+
+            //Se agrupan los datos del reporte por DPI
+            var repetidos = reportes.GroupBy(r => r.Dpi);
+
+            int max = 0;
+            int pos = 0;
+
+            for (int i = 0; i < repetidos.Count(); i++)            
+            {
+                if (repetidos.ToList()[i].Count() > max)
+                {
+                    max = repetidos.ToList()[i].Count();
+                    pos = i;
+                }
+            }
+
+            labelPropietario.Text = "El DPI: " + repetidos.ToList()[pos].Key;
+            labelPropiedades.Text = "Tiene " + max.ToString() + " Propiedades";
+
+
+
+
         }
     }
 }

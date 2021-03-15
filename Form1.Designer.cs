@@ -30,6 +30,10 @@
         {
             this.dataGridViewReporte = new System.Windows.Forms.DataGridView();
             this.buttonCargar = new System.Windows.Forms.Button();
+            this.buttonOrdenar = new System.Windows.Forms.Button();
+            this.buttonMasPropiedades = new System.Windows.Forms.Button();
+            this.labelPropietario = new System.Windows.Forms.Label();
+            this.labelPropiedades = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReporte)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,7 +47,7 @@
             // 
             // buttonCargar
             // 
-            this.buttonCargar.Location = new System.Drawing.Point(212, 354);
+            this.buttonCargar.Location = new System.Drawing.Point(40, 333);
             this.buttonCargar.Name = "buttonCargar";
             this.buttonCargar.Size = new System.Drawing.Size(177, 55);
             this.buttonCargar.TabIndex = 1;
@@ -51,11 +55,53 @@
             this.buttonCargar.UseVisualStyleBackColor = true;
             this.buttonCargar.Click += new System.EventHandler(this.buttonCargar_Click);
             // 
+            // buttonOrdenar
+            // 
+            this.buttonOrdenar.Location = new System.Drawing.Point(283, 333);
+            this.buttonOrdenar.Name = "buttonOrdenar";
+            this.buttonOrdenar.Size = new System.Drawing.Size(117, 56);
+            this.buttonOrdenar.TabIndex = 2;
+            this.buttonOrdenar.Text = "Ordenar por Cuota";
+            this.buttonOrdenar.UseVisualStyleBackColor = true;
+            this.buttonOrdenar.Click += new System.EventHandler(this.buttonOrdenar_Click);
+            // 
+            // buttonMasPropiedades
+            // 
+            this.buttonMasPropiedades.Location = new System.Drawing.Point(670, 115);
+            this.buttonMasPropiedades.Name = "buttonMasPropiedades";
+            this.buttonMasPropiedades.Size = new System.Drawing.Size(117, 51);
+            this.buttonMasPropiedades.TabIndex = 3;
+            this.buttonMasPropiedades.Text = "Propietario con mas Propiedades";
+            this.buttonMasPropiedades.UseVisualStyleBackColor = true;
+            this.buttonMasPropiedades.Click += new System.EventHandler(this.buttonMasPropiedades_Click);
+            // 
+            // labelPropietario
+            // 
+            this.labelPropietario.AutoSize = true;
+            this.labelPropietario.Location = new System.Drawing.Point(670, 26);
+            this.labelPropietario.Name = "labelPropietario";
+            this.labelPropietario.Size = new System.Drawing.Size(57, 13);
+            this.labelPropietario.TabIndex = 4;
+            this.labelPropietario.Text = "Propietario";
+            // 
+            // labelPropiedades
+            // 
+            this.labelPropiedades.AutoSize = true;
+            this.labelPropiedades.Location = new System.Drawing.Point(670, 54);
+            this.labelPropiedades.Name = "labelPropiedades";
+            this.labelPropiedades.Size = new System.Drawing.Size(66, 13);
+            this.labelPropiedades.TabIndex = 5;
+            this.labelPropiedades.Text = "Propiedades";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 450);
+            this.ClientSize = new System.Drawing.Size(1177, 450);
+            this.Controls.Add(this.labelPropiedades);
+            this.Controls.Add(this.labelPropietario);
+            this.Controls.Add(this.buttonMasPropiedades);
+            this.Controls.Add(this.buttonOrdenar);
             this.Controls.Add(this.buttonCargar);
             this.Controls.Add(this.dataGridViewReporte);
             this.Name = "Form1";
@@ -63,6 +109,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReporte)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -70,6 +117,10 @@
 
         private System.Windows.Forms.DataGridView dataGridViewReporte;
         private System.Windows.Forms.Button buttonCargar;
+        private System.Windows.Forms.Button buttonOrdenar;
+        private System.Windows.Forms.Button buttonMasPropiedades;
+        private System.Windows.Forms.Label labelPropietario;
+        private System.Windows.Forms.Label labelPropiedades;
     }
 }
 
