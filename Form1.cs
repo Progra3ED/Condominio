@@ -124,6 +124,8 @@ namespace Condominio
             //de su nombre y apellido
 
             //Se agrupan los datos del reporte por DPI
+            //Esto devuelve una lista que en cada posición contiene una sublista
+            // con todas las propiedades que tienen el mismo dpi
             var repetidos = reportes.GroupBy(r => r.Dpi);
 
             //se supone un cantidad de 0 propiedades
@@ -164,5 +166,54 @@ namespace Condominio
             //como estan ordenada de menor a mayor las ultimas 3 son las cuotas mayores 
             labelAltas.Text = "Más Altas: " + reportes[cuantos -1 ].Cuota.ToString() + "," + reportes[cuantos - 2].Cuota.ToString() + "," + reportes[cuantos - 3].Cuota.ToString();
         }
+
+        private void buttonCuota_Click(object sender, EventArgs e)
+        {
+
+            //Se agrupan los datos del reporte por DPI:
+            //Esto devuelve una lista que en cada posición contiene una sublista
+            //con todas las propiedades que tienen el mismo dpi
+            var agrupado = reportes.GroupBy(r => r.Dpi);
+
+            //inciar con una cuota mayor de 0 y un dpi vacio
+            double maxCuota = 0;
+            string maxDpi = "";
+           
+
+            //Recorrer cada dato agrupado
+            foreach (var grupo in agrupado)
+            {
+                
+                double sumaCuota = 0;
+                string dpi = "";
+
+                //se recorren cada propiedad que hay en el grupo con el mismo dpi
+                //y se va sumando el total de cuotas de cada una de esas propiedades
+                //y se guarda el dpi de ese grupo
+                foreach (var p in grupo)
+                {
+                    sumaCuota += p.Cuota;
+                    dpi = p.Dpi;
+                }                
+
+                //si la suma de las cuotas del dpi actual es mayor que la cuota mayor
+                //la suma de la cuota se convirte en la cuota mayor
+                //y se guarda el dpi de esa suma de cuotas
+                if (sumaCuota > maxCuota)
+                {
+                    maxCuota = sumaCuota;
+                    maxDpi = dpi;
+                }
+            }
+
+
+            labelPropietarioMax.Text = maxDpi;
+            labelCuotaMax.Text = maxCuota.ToString();
+
+
+
+        }
+
+       
     }
 }

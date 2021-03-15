@@ -37,6 +37,9 @@
             this.buttonCuotas = new System.Windows.Forms.Button();
             this.labelAltas = new System.Windows.Forms.Label();
             this.labelBajas = new System.Windows.Forms.Label();
+            this.buttonCuota = new System.Windows.Forms.Button();
+            this.labelPropietarioMax = new System.Windows.Forms.Label();
+            this.labelCuotaMax = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReporte)).BeginInit();
             this.SuspendLayout();
             // 
@@ -124,11 +127,42 @@
             this.labelBajas.TabIndex = 8;
             this.labelBajas.Text = "Las cuotas más bajas";
             // 
+            // buttonCuota
+            // 
+            this.buttonCuota.Location = new System.Drawing.Point(676, 295);
+            this.buttonCuota.Name = "buttonCuota";
+            this.buttonCuota.Size = new System.Drawing.Size(117, 45);
+            this.buttonCuota.TabIndex = 9;
+            this.buttonCuota.Text = "Propietario con la cuota más alta";
+            this.buttonCuota.UseVisualStyleBackColor = true;
+            this.buttonCuota.Click += new System.EventHandler(this.buttonCuota_Click);
+            // 
+            // labelPropietarioMax
+            // 
+            this.labelPropietarioMax.AutoSize = true;
+            this.labelPropietarioMax.Location = new System.Drawing.Point(839, 295);
+            this.labelPropietarioMax.Name = "labelPropietarioMax";
+            this.labelPropietarioMax.Size = new System.Drawing.Size(57, 13);
+            this.labelPropietarioMax.TabIndex = 10;
+            this.labelPropietarioMax.Text = "Propietario";
+            // 
+            // labelCuotaMax
+            // 
+            this.labelCuotaMax.AutoSize = true;
+            this.labelCuotaMax.Location = new System.Drawing.Point(842, 326);
+            this.labelCuotaMax.Name = "labelCuotaMax";
+            this.labelCuotaMax.Size = new System.Drawing.Size(91, 13);
+            this.labelCuotaMax.TabIndex = 11;
+            this.labelCuotaMax.Text = "Cuota Acumulada";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1177, 450);
+            this.Controls.Add(this.labelCuotaMax);
+            this.Controls.Add(this.labelPropietarioMax);
+            this.Controls.Add(this.buttonCuota);
             this.Controls.Add(this.labelBajas);
             this.Controls.Add(this.labelAltas);
             this.Controls.Add(this.buttonCuotas);
@@ -158,6 +192,9 @@
         private System.Windows.Forms.Button buttonCuotas;
         private System.Windows.Forms.Label labelAltas;
         private System.Windows.Forms.Label labelBajas;
+        private System.Windows.Forms.Button buttonCuota;
+        private System.Windows.Forms.Label labelPropietarioMax;
+        private System.Windows.Forms.Label labelCuotaMax;
     }
 }
 
