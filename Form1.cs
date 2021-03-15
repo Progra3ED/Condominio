@@ -126,11 +126,17 @@ namespace Condominio
             //Se agrupan los datos del reporte por DPI
             var repetidos = reportes.GroupBy(r => r.Dpi);
 
+            //se supone un cantidad de 0 propiedades
             int max = 0;
+            //en la posición 0
             int pos = 0;
 
+            //se recorren los datos agrupados
             for (int i = 0; i < repetidos.Count(); i++)            
             {
+                //si la cantidad de datos que tiene es mayor al mayor 
+                //esa cantidad se considera la nueva mayor y se guarda
+                //la posición en la que se encontró
                 if (repetidos.ToList()[i].Count() > max)
                 {
                     max = repetidos.ToList()[i].Count();
@@ -138,12 +144,25 @@ namespace Condominio
                 }
             }
 
+            //en Key queda guardado el dato por el cual se agrupo
+            //en este caso agrupamos por DPI
             labelPropietario.Text = "El DPI: " + repetidos.ToList()[pos].Key;
+            //En max se guardó el número de propiedades que tenía cada DPI
             labelPropiedades.Text = "Tiene " + max.ToString() + " Propiedades";
 
+        }
 
+        private void buttonCuotas_Click(object sender, EventArgs e)
+        {
+            //aseguramos que la lista este ordenada
+            MostrarReporte(true);
 
+            int cuantos = reportes.Count();
 
+            //como esta ordenada de menor a mayor están en la posición 0,1,2
+            labelBajas.Text = "Más Bajas: " + reportes[0].Cuota.ToString() + "," + reportes[1].Cuota.ToString() + "," + reportes[2].Cuota.ToString();
+            //como estan ordenada de menor a mayor las ultimas 3 son las cuotas mayores 
+            labelAltas.Text = "Más Altas: " + reportes[cuantos -1 ].Cuota.ToString() + "," + reportes[cuantos - 2].Cuota.ToString() + "," + reportes[cuantos - 3].Cuota.ToString();
         }
     }
 }
