@@ -65,6 +65,25 @@ namespace Condominio
 
         private void buttonCargar_Click(object sender, EventArgs e)
         {
+            List<Reporte> reportes = new List<Reporte>();
+
+            foreach (var propiedad in propiedades)
+            {
+                Reporte reporte = new Reporte();
+
+                Propietario propietario = propietarios.Find(p => p.Dpi == propiedad.Dpi);
+
+                reporte.Nombre = propietario.Nombre;
+                reporte.Apellido = propietario.Apellido;
+                reporte.NoCasa = propiedad.NoCasa;
+                reporte.Cuota = propiedad.Cuota;
+
+                reportes.Add(reporte);
+            }
+
+            dataGridViewReporte.DataSource = null;
+            dataGridViewReporte.DataSource = reportes;
+            dataGridViewReporte.Refresh();            
 
         }
 
